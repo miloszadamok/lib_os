@@ -1,0 +1,4 @@
+Rzeczy do zrobienia:
+//lp--tytul--godziny--osoba//
+1--Jezyk baz danych--x--50/50
+rob dalej :d
