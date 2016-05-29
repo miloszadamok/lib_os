@@ -1,4 +1,6 @@
-sdfdsa
-csfadfcvas
-csacdas
-dasfsadc
+#include <fstream>
+
+int main()
+{
+	return 0;
+}
