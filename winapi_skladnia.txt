@@ -1,0 +1,83 @@
+///////////////////////////////////////////////////////////////////////////////budowa WinMain
+
+int WINAPI WinMain ( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
+{
+
+	return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////budowa messagebox'a
+
+MessageBox(NULL, "napis", "tytu³", styl);
+
+///////////////////////////////////////////////////////////////////////////////klasa okna
+
+LPSTR NazwaKlasy = "Klasa Okienka";
+
+WNDCLASSEX wc;
+
+wc.cbSize = sizeof( WNDCLASSEX );
+wc.style = 0;
+wc.lpfnWndProc = WndProc;
+wc.cbClsExtra = 0;
+wc.cbWndExtra = 0;
+wc.hInstance = hInstance;
+wc.hIcon = LoadIcon( NULL, IDI_APPLICATION );
+wc.hCursor = LoadCursor( NULL, IDC_ARROW );
+wc.hbrBackground =( HBRUSH )( COLOR_WINDOW + 1 );
+wc.lpszMenuName = NULL;
+wc.lpszClassName = NazwaKlasy;
+wc.hIconSm = LoadIcon( NULL, IDI_APPLICATION );
+
+///////////////////////////////////////////////////////////////////////////////rejestracja okna
+
+if( !RegisterClassEx( & wc ) )
+{
+    MessageBox( NULL, "Nie uda³o sie otworzyc okna", "Niestety...",
+    MB_ICONEXCLAMATION | MB_OK );
+    return 1;
+}
+
+///////////////////////////////////////////////////////////////////////////////tworzenie okna
+CreateWindowEx( dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam )
+
+
+dwExStyle				Rozszerzone parametry stylu okna. Damy sobie WS_EX_WINDOWEDGE, czyli trójwymiarow¹ ramkê
+lpClassName		Nazwa klasy okna, któr¹ w³aœnie zarejestrowaliœmy
+lpWindowName	Napis na pasku tytu³owym okienka
+dwStyle					"Zwyk³e" style okienka (szczegó³y dalej)
+x, y							Pozycja okna. Mo¿na ustawiæ na CW_USEDEFAULT, czyli na domyœln¹ pozycjê
+nWidth, nHeight	Wymiary okienka. Wpisz, ile chcesz. Tylko nie chciej za du¿o albo za ma³o :-)
+hWndParent			Uchwyt okna rodzicielskiego (nadrzêdnego). Zwykle takowe nie istnieje, wiêc dajemy NULL
+hMenu					Uchwyt menu dla naszego okna. Na razie ¿adnego nie mamy, wiêc NULL
+hInstance				Uchwyt aplikacji, której przypisujemy okienko. Dajemy parametr hInstance, otrzymany od systemu
+								jako argument dla WinMain
+lpParam					wpisz NULL i nie dociekaj, co to :-). Teoretycznie jest to wskaŸnik do dodatkowych parametrów
+
+///////////////////////////////////////////////////////////////////////////////dwStyle
+
+WS_BORDER									Cienka ramka
+WS_CAPTION									Okreœla, ¿e okno ma mieæ pasek tytu³owy (automatycznie dodaje te¿ WS_BORDER)
+WS_CHILD										Tworzy okienko potomne (tego na razie nie robimy), nie mo¿e byæ u¿yte z 
+															WS_POPUP
+WS_DISABLED								Okienko bêdzie wy³¹czone zaraz po utworzeniu (inwalida od urodzenia? :-) )
+WS_DLGFRAME								Okienko z ramk¹ stosowan¹ do dialogów
+WS_HSCROLL								Okienko z poziomym paskiem do przesuwania
+WS_MAXIMIZE								Okienko po utworzeniu bêdzie zmaksymalizowane
+WS_MAXIMIZEBOX						Dodaje przycisk Maksymalizuj w prawym górnym rogu (musisz po³¹czyæ z 		
+															WS_SYSMENU,
+															¿eby dzia³a³o)
+WS_MINIMIZE									Okienko startuje na pasku zadañ
+WS_MINIMIZEBOX						Dodaje przycisk Minimalizuj (musisz po³¹czyæ z WS_SYSMENU)
+WS_OVERLAPPED						Zwyk³e okienko z paskiem tytu³owym i z ramk¹
+WS_OVERLAPPEDWINDOW		Po³¹czenie stylów WS_OVERLAPPED, WS_CAPTION, WS_SYSMENU, 
+															WS_THICKFRAME, WS_MINIMIZEBOX i WS_MAXIMIZEBOX
+WS_POPUP										Zwyk³y szary prostok¹t...
+WS_POPUPWINDOW					Po³¹czenie stylów WS_OVERLAPPED i WS_SYSMENU, z tym ¿e dopóki nie 
+															dodasz WS_CAPTION, menu okienka nie bêdzie widoczne
+WS_SIZEBOX									Okienko, które mo¿e zmieniaæ rozmiar
+WS_SYSMENU								Tworzy menu dla okienka (ikonka w lewym górnym rogu), dzia³a tylko z 
+															WS_CAPTION
+WS_TABSTOP								U¿ytkownik mo¿e siê prze³¹czaæ pomiêdzy kontrolkami w okienku klawiszem TAB
+WS_VISIBLE									Sprawia, ¿e okno jest widzialne
+WS_VSCROLL								Dodaje pionowy pasek przesuwu do okna
